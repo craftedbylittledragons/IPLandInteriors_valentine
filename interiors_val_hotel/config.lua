@@ -43,3 +43,9 @@ Config.TeleportExit_On = false
 Config.ExitRoom = {x = -321.8341, 767.2936, 121.6827 , h = 000.00 }
 Config.ExitRoom2B = {x = -321.2203, 762.3177, 120.6814, h = 000.00 }
   
+
+
+ymaps = {
+    {filename ="val_02__interior_val_hotel_int_main_milo_.ymap", name="val_02__interior_val_hotel_int_main_milo_", hash=GetHashKey("val_02__interior_val_hotel_int_main_milo_"), trigger=true, description=""},
+    {filename ="val_02_lockdown_hotel.ymap", name="val_02_lockdown_hotel", hash=GetHashKey("val_02_lockdown_hotel"), trigger=false, description=""},
+}

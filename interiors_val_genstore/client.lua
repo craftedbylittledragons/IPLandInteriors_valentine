@@ -13,6 +13,10 @@ Config.Closed = false
 Config.Sign = true
 Config.Boxes = false
 
+ymaps = {
+    {filename ="val_03__interior_val_genstore_milo_.ymap", name="val_03__interior_val_genstore_milo_", hash=GetHashKey("val_03__interior_val_genstore_milo_"), trigger=true, description=""},
+}
+
 Config.Label = "Valentine General Store"
 Config.x = -323.411
 Config.y = 801.078
@@ -48,7 +52,12 @@ function EnableResouresIMAP()
     end 
 
 -- there is an ipl flicker at the cash register in the gen store. source unknow yet.
-
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)    
+        if row.trigger == true then 
+            RequestImap(row.hash)        
+        end 
+    end 
 end
 
 function EnableResouresINTERIORS(x, y, z)   
@@ -72,6 +81,10 @@ function DisableResourcesIMAPS()
     RemoveImap(406334892)    -- New Hanover -- Valentine -- General Store -- Closed Sign on Door  
     RemoveImap(135886022)    -- New Hanover -- Valentine -- General Store -- Sign in Front    
     RemoveImap(2095116685)    -- New Hanover -- Valentine -- Green House -- General Store -- Saloon Mainstreet -- Supplies/Boxes in Front  
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)     
+        RemoveImap(row.hash)    
+    end      
 end
 
 function DisableResourcesINTERIORS(x, y, z)      

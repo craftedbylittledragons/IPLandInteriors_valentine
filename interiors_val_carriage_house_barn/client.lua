@@ -7,6 +7,10 @@ Config.TeleportME = true -- For testing set to false for live server
  
 Config.Carriagehouse = true 
 
+ymaps = {
+    {filename ="val_01__interior_val_carriagehouse_int_milo_.ymap", name="val_01__interior_val_carriagehouse_int_milo_", hash=GetHashKey("val_01__interior_val_carriagehouse_int_milo_"), trigger=true, description=""},
+}
+
 Config.Label = "Carriage House Valentine"
 Config.x = -273.67654418946 -- need to find this imap 
 Config.y = 689.20971679688
@@ -22,6 +26,12 @@ function EnableResouresIMAP()
     if Config.Carriagehouse == true then 
         RequestImap(-2066428624) -- House interior at -379.01, 917.94, 118.59   
     end   
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)    
+        if row.trigger == true then 
+            RequestImap(row.hash)        
+        end 
+    end     
 end  
 
 function EnableResouresINTERIORS(x, y, z)      
@@ -36,6 +46,10 @@ end
 function DisableResourcesIMAPS()
     RemoveImap(-2066428624) -- House interior at -379.01, 917.94, 118.59 
     RemoveImap(1595374394) -- House interior at -379.01, 917.94, 118.59  
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)     
+        RemoveImap(row.hash)    
+    end     
 end
 
 function DisableResourcesINTERIORS(x, y, z)  

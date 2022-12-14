@@ -18,6 +18,13 @@ Config.Fancy = true
 
 Config.Unknow = true
 
+ymaps = {
+    {filename ="val_03__interior_val_jail_int_milo_.ymap", name="val_03__interior_val_jail_int_milo_", hash=GetHashKey("val_03__interior_val_jail_int_milo_"), trigger=true, description=""},
+    {filename ="val_03_props_lockdown_jail.ymap", name="val_03_props_lockdown_jail", hash=GetHashKey("val_03_props_lockdown_jail"), trigger=false, description=""},    
+    {filename ="val_03_default_jail.ymap", name="val_03_default_jail", hash=GetHashKey("val_03_default_jail"), trigger=true, description=""},    
+}
+
+
 Config.Label = "Valentine Law Office"
 Config.x = -290.990387
 Config.y = 779.267822

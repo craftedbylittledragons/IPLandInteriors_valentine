@@ -17,6 +17,10 @@ Config.Boxes = false
 
 Config.StockLevel = 3 -- 0 = bare bones 1 = end of month (running low) 2 = mid month good stock 3 = fully stocked
 
+ymaps = {
+    {filename ="val_03__interior_val_genstore_milo_.ymap", name="val_03__interior_val_genstore_milo_", hash=GetHashKey("val_03__interior_val_genstore_milo_"), trigger=true, description=""},
+}
+
 Config.Label = "Valentine General Store"
 Config.x = -323.411
 Config.y = 801.078
@@ -52,8 +56,13 @@ function EnableResouresIMAP()
         RequestImap(2095116685)    -- New Hanover -- Valentine -- Green House -- General Store -- Saloon Mainstreet -- Supplies/Boxes in Front 
     end 
  
--- there is an ipl flicker at the cash register in the gen store. source unknow yet.
-
+    -- there is an ipl flicker at the cash register in the gen store. source unknow yet.
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)    
+        if row.trigger == true then 
+            RequestImap(row.hash)        
+        end 
+    end 
 end
 
 function EnableResouresINTERIORS(x, y, z)    
@@ -137,77 +146,7 @@ function EnableResouresINTERIORS(x, y, z)
         ActivateInteriorEntitySet(interior, "_s_wormcan01x_group")      
     end 
 end
-
---[[
-	ActivateInteriorEntitySets(45826, "Valentine general store", {
-		"val_genstore_night_light",
-		"_p_apple01x_dressing",
-		"_p_apple01x_group",
-		"_p_bread06x_dressing",
-		"_p_bread06x_group",
-		"_p_carrots_01x_dressing",
-		"_p_carrots_01x_group",
-		"_p_cigar02x_dressing",
-		"_p_cigar02x_group",
-		"_p_cigarettebox01x_dressing",
-		"_p_cigarettebox01x_group",
-		"_p_corn02x_dressing",
-		"_p_corn02x_group",
-		"_p_int_fishing01_dressing",
-		"_p_package01x_dressing",
-		"_p_package01x_group",
-		"_p_pear_02x_dressing",
-		"_p_pear_02x_group",
-		"_p_tin_pomade01x_dressing",
-		"_p_tin_pomade01x_group",
-		"_p_tin_soap01x_dressing",
-		"_p_tin_soap01x_group",
-		"_s_biscuits01x_dressing",
-		"_s_biscuits01x_group",
-		"_s_canBeans01x_group",
-		"_s_canBeans01_dressing",
-		"_s_canCorn01x_dressing",
-		"_s_canCorn01x_group",
-		"_s_candyBag01x_red_group",
-		"_s_canPeaches01x_dressing",
-		"_s_canPeaches01x_group",
-		"_s_cheeseWedge1x_group",
-		"_s_chocolateBar02x_dressing",
-		"_s_chocolateBar02x_group",
-		"_s_coffeeTin01x_dressing",
-		"_s_coffeeTin01x_group",
-		"_s_crackers01x_dressing",
-		"_s_crackers01x_group",
-		"_s_cricketTin01x_dressing",
-		"_s_cricketTin01x_group",
-		"_s_gunOil01x_dressing",
-		"_s_gunOil01x_group",
-		"_s_inv_baitHerb01x_dressing",
-		"_s_inv_baitherb01x_group",
-		"_s_inv_baitMeat01x_dressing",
-		"_s_inv_baitmeat01x_group",
-		"_s_inv_gin01x_dressing",
-		"_s_inv_gin01x_group",
-		"_s_inv_horsePills01x_dressing",
-		"_s_inv_horsePills01x_group",
-		"_s_inv_pocketwatch04x_dressing",
-		"_s_inv_pocketWatch04x_group",
-		"_s_inv_rum01x_dressing",
-		"_s_inv_rum01x_group",
-		"_s_inv_tabacco01x_dressing",
-		"_s_inv_tabacco01x_group",
-		"_s_inv_whiskey01x_dressing",
-		"_s_inv_whiskey01x_group",
-		"_s_oatcakes01x_dressing",
-		"_s_oatcakes01x_group",
-		"_s_offal01x_dressing",
-		"_s_offal01x_group",
-		"_s_saltedbeef01x_group",
-		"_s_saltedbeef02x_group",
-		"_s_wormCan01x_dressing",
-		"_s_wormcan01x_group"
-	})    
---]]
+ 
 ----------- turn off the bar ------
 function DisableResourcesIMAPS() 
     RemoveImap(56708243)     -- New Hanover -- Valentine -- Green House -- General Store -- Boarded up? 
@@ -217,9 +156,12 @@ function DisableResourcesIMAPS()
     RemoveImap(406334892)    -- New Hanover -- Valentine -- General Store -- Closed Sign on Door  
     RemoveImap(135886022)    -- New Hanover -- Valentine -- General Store -- Sign in Front    
     RemoveImap(2095116685)    -- New Hanover -- Valentine -- Green House -- General Store -- Saloon Mainstreet -- Supplies/Boxes in Front  
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)     
+        RemoveImap(row.hash)    
+    end      
 end
  
-
 
 function DisableResourcesINTERIORS(x, y, z)      
      local interior = GetInteriorAtCoords(x, y, z) 

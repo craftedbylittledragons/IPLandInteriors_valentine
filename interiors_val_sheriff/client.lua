@@ -13,6 +13,13 @@ Config.OuterWall = true
 Config.PrisonBreak = true  
 Config.Walls = true  
 
+
+ymaps = {
+    {filename ="val_03__interior_val_jail_int_milo_.ymap", name="val_03__interior_val_jail_int_milo_", hash=GetHashKey("val_03__interior_val_jail_int_milo_"), trigger=true, description=""},
+    {filename ="val_03_props_lockdown_jail.ymap", name="val_03_props_lockdown_jail", hash=GetHashKey("val_03_props_lockdown_jail"), trigger=false, description=""},    
+    {filename ="val_03_default_jail.ymap", name="val_03_default_jail", hash=GetHashKey("val_03_default_jail"), trigger=true, description=""},    
+}
+
 Config.Label = "Val Sheriff"
 Config.x = -277.183
 Config.y = 806.583

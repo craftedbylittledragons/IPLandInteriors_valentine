@@ -1,12 +1,14 @@
 Config = {}
+Config.ScriptName = "interiors_val_bank"
 Config.Commands = true  -- For testing set to false for live server
 Config.TeleportME = true -- For testing set to false for live server
 
-Config.Windows = false 
+--imap
+Config.Windows = true 
 Config.WindowsType = 2  -- optiosn 1 or 2 
-Config.Curtains = false -- options 1 (up) or 2 (down)
+Config.Curtains = true -- options 1 (up) or 2 (down)
 
-Config.Settee = false -- options 1 or 2 --couch in the lobby
+Config.Settee = true -- options 1 or 2 --couch in the lobby
 Config.Vault = false -- options 1 (up) or 2 (down)
 
 Config.Robbery = false
@@ -17,10 +19,10 @@ Config.Damaged = false -- options 1 (up) or 2 (down)
 
 Config.BoardedUp = false
 
-
-Config.Unknown = true
-Config.Unknown1 = true
-Config.Unknown1 = true
+-- interiors
+Config.Unknown = false
+Config.Unknown1 = false
+Config.Unknown2 = false
 
 Config.Label = "Valentine Bank"
 Config.x = -307.886
@@ -47,3 +49,10 @@ Config.door_hash_v2 = {
 [5730576] = {5730576,-164490887,"p_door_val_genstore2",-325.49053955078125, 806.7294311523438, 116.883544921875},
 --]] 
 }  
+
+
+ymaps = {
+    {filename ="val_02__interior_val_bank_int_main_milo_.ymap", name="val_02__interior_val_bank_int_main_milo_", hash=GetHashKey("val_02__interior_val_bank_int_main_milo_"), trigger=true, description=""},
+    {filename ="val_02_lockdown_bank.ymap", name="val_02_lockdown_bank", hash=GetHashKey("val_02_lockdown_bank"), trigger=true, description=""},
+}
+ 

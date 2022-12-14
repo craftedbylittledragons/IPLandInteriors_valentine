@@ -18,8 +18,13 @@ function EnableResouresIMAP()
         RequestImap(-1740986169) -- Something relating to valentine saloon
         --- val_04__interior_val_saloon2_int_milo_  -1740986169    scottybeammeup -289.67193603516 769.58337402344 119.80627441406 -- behind the law office
     end      
-    RequestImap(GetHashKey("val_04__interior_val_saloon2_int_milo_")) 
 
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)    
+        if row.trigger == true then 
+            RequestImap(row.hash)        
+        end  
+    end 
 end
 
 function EnableResouresINTERIORS(x, y, z)  
@@ -55,8 +60,12 @@ end
 function DisableResourcesIMAPS() 
     RemoveImap(-2083943324) -- New Hanover -- Valentine -- Keane's Saloon -- Debris Infront of Liqour
     RemoveImap(610256856) -- New Hanover -- Valentine -- Keane's Saloon -- Debris and Remodle next to Liqour 
-    RemoveImap(666617953) -- Something relating to valentine saloon        
-    RemoveImap(GetHashKey("val_04__interior_val_saloon2_int_milo_"))  
+    RemoveImap(666617953) -- Something relating to valentine saloon     
+
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)     
+        RemoveImap(row.hash)    
+    end    
 
 end
 

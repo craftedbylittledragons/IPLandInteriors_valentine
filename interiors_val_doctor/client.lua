@@ -12,7 +12,13 @@ function EnableResouresIMAP()
         RequestImap(-1049500949) -- Fixed Chair outside Valentine Doctor's Office  
     elseif Config.Chair == 2 then 
         RequestImap(-2009766528) -- Broken Chair outside Valentine Doctor's Office
-    end  
+    end      
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)    
+        if row.trigger == true then 
+            RequestImap(row.hash)        
+        end 
+    end 
 end
 
 function EnableResouresINTERIORS(x, y, z)  
@@ -48,6 +54,12 @@ end
 ----------- turn off the bar ------
 function DisableResourcesIMAPS()     
     RemoveImap(-981203673)    -- New Hanover -- Valentine -- Doctors Office -- Boarded up   
+    RemoveImap(-1049500949)    --- Fixed Chair outside Valentine Doctor's Office 
+    RemoveImap(-2009766528)    -- Broken Chair outside Valentine Doctor's Office  
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)     
+        RemoveImap(row.hash)    
+    end    
 end
 
 function DisableResourcesINTERIORS(x, y, z)  

@@ -20,6 +20,36 @@ Config.StormDebris = true
 
 Config.StablesFrontWindow = false 
 
+ymaps = {
+    {filename ="val_07__strm_0.ymap", name="val_07__strm_0", hash=GetHashKey("val_07__strm_0"), trigger=true, description=""},
+    {filename ="val_07__long_0.ymap", name="val_07__long_0", hash=GetHashKey("val_07__long_0"), trigger=true, description=""},
+    {filename ="val_07_.ymap", name="val_07_", hash=GetHashKey("val_07_"), trigger=true, description=""},
+
+    {filename ="val_06__strm_0.ymap", name="val_06__strm_0", hash=GetHashKey("val_06__strm_0"), trigger=false, description=""},
+    {filename ="val_06_.ymap", name="val_06_", hash=GetHashKey("val_06_"), trigger=false, description=""},
+
+    {filename ="val_05__strm_0.ymap", name="val_05__strm_0", hash=GetHashKey("val_05__strm_0"), trigger=false, description=""},
+    {filename ="val_05__long_0.ymap", name="val_05__long_0", hash=GetHashKey("val_05__long_0"), trigger=false, description=""} ,   
+    {filename ="val_05_.ymap", name="val_05_", hash=GetHashKey("val_05_"), trigger=false, description=""},
+
+    {filename ="val_04__strm_0.ymap", name="val_04__strm_0", hash=GetHashKey("val_04__strm_0"), trigger=false, description=""},
+    {filename ="val_04__long_0.ymap", name="val_04__long_0", hash=GetHashKey("val_04__long_0"), trigger=false, description=""},
+    {filename ="val_04_.ymap", name="val_04_", hash=GetHashKey("val_04_"), trigger=false, description=""},
+
+    {filename ="val_03__strm_0.ymap", name="val_03__strm_0", hash=GetHashKey("val_03__strm_0"), trigger=false, description=""},
+    {filename ="val_03__long_0.ymap", name="val_03__long_0", hash=GetHashKey("val_03__long_0"), trigger=false, description=""},
+    {filename ="val_03_lockdown.ymap", name="val_03_lockdown", hash=GetHashKey("val_03_lockdown"), trigger=false, description=""},
+    {filename ="val_03_.ymap", name="val_03_", hash=GetHashKey("val_03_"), trigger=false, description=""},
+
+    {filename ="val_02__strm_0.ymap", name="val_02__strm_0", hash=GetHashKey("val_02__strm_0"), trigger=false, description=""},
+    {filename ="val_02__long_0.ymap", name="val_02__long_0", hash=GetHashKey("val_02__long_0"), trigger=false, description=""},
+    {filename ="val_02_.ymap", name="val_02_", hash=GetHashKey("val_02_"), trigger=false, description=""},
+ 
+    {filename ="val_01__strm_0.ymap", name="val_01__strm_0", hash=GetHashKey("val_01__strm_0"), trigger=false, description=""},
+    {filename ="val_01__long_0.ymap", name="val_01__long_0", hash=GetHashKey("val_01__long_0"), trigger=false, description=""},
+    {filename ="val_01_.ymap", name="val_01_", hash=GetHashKey("val_01_"), trigger=true, description=""},
+}
+
 Config.Label = "Val Main Street"
 Config.x = -306.703
 Config.y = 789.619
@@ -76,7 +106,14 @@ function EnableResouresIMAP()
     if Config.StormDebris == true then  
         RequestImap(-1878526311)        
         --     val_01__strm_0  -1878526311    scottybeammeup -337.50521850586 736.31860351562 115.46398925782 -- center of road between hotel and encampment
-  end 
+    end 
+ 
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)    
+        if row.trigger == true then 
+            RequestImap(row.hash)        
+        end  
+    end 
      
 end 
 
@@ -106,8 +143,12 @@ function DisableResourcesIMAPS()
     RemoveImap(805009584)     -- New Hanover -- Valentine -- Barricades -- Western 
     RemoveImap(-560409108)    -- New Hanover -- Valentine -- Barricades -- Eastern
     RemoveImap(-518785376)    -- New Hanover -- Valentine -- Barricades -- Southern
-     RemoveImap(-1878526311)        
-    --     val_01__strm_0  -1878526311    scottybeammeup -337.50521850586 736.31860351562 115.46398925782 -- center of road between hotel and encampment    
+    RemoveImap(-1878526311)   --     val_01__strm_0  -1878526311    scottybeammeup -337.50521850586 736.31860351562 115.46398925782 -- center of road between hotel and encampment    
+
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)     
+        RemoveImap(row.hash)    
+    end      
 end      
 
 function DisableResourcesINTERIORS(x, y, z)  

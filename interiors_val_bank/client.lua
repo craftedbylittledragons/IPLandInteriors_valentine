@@ -6,20 +6,32 @@ local character_selected = false
 function EnableResouresIMAP() 
     -- none for this set
     if Config.BoardedUp == true then  
-	    RequestImap(-1989899190)  -- New Hanover -- Valentine -- Bank Mainstreet -- Boarded Up
+	    RequestImap(-1989899190)  
+        print(Config.ScriptName .." RequestImap(-1989899190) ")
+        -- New Hanover -- Valentine -- Bank Mainstreet -- Boarded Up
     end
     if Config.Unknown == true then  
-        RequestImap(-784156210) -- Something relating to valentine bank
+        RequestImap(-784156210) 
+        print(Config.ScriptName .." RequestImap(-784156210) ")
+        -- Something relating to valentine bank
     end    
     if Config.Unknown1 == true then  
         RequestImap(-1229144803)        
+        print(Config.ScriptName .." RequestImap(-1229144803) ")
         --    l_10__strm_0    -1229144803    scottybeammeup -304.35153198242 766.25604248046 121.8659439087 -- bank roof
     end    
     if Config.Unknown2 == true then  
         RequestImap(-1928020839)        
+        print(Config.ScriptName .." RequestImap(-1928020839) ")
         --     val_02__strm_0  -1928020839    scottybeammeup -305.13513183594 757.31469726562 120.41844940186 -- rear of bank
     end      
-      
+    for key,row in pairs(ymap) do
+        print(Config.ScriptName,row.filename, row.name, row.hash, row.trigger, row.description)    
+        if row.trigger == true then 
+            RequestImap(row.hash)        
+        end 
+    end 
+    
 end
 
 function EnableResouresINTERIORS(x, y, z)  
@@ -67,12 +79,14 @@ end
 ----------- turn off the bar ------
 function DisableResourcesIMAPS()
     -- none for this set
-	RemoveImap(-1989899190)  -- New Hanover -- Valentine -- Bank Mainstreet -- Boarded Up    
-
-    RemoveImap(-1229144803)        
-    --    l_10__strm_0    -1229144803    scottybeammeup -304.35153198242 766.25604248046 121.8659439087 -- bank roof
-    RemoveImap(-1928020839)        
-    --     val_02__strm_0  -1928020839    scottybeammeup -305.13513183594 757.31469726562 120.41844940186 -- rear of bank
+	RemoveImap(-1989899190) -- New Hanover -- Valentine -- Bank Mainstreet -- Boarded Up    
+    RequestImap(-784156210) -- Something relating to valentine bank
+    RemoveImap(-1229144803) -- l_10__strm_0    -1229144803    scottybeammeup -304.35153198242 766.25604248046 121.8659439087 -- bank roof
+    RemoveImap(-1928020839) -- val_02__strm_0  -1928020839    scottybeammeup -305.13513183594 757.31469726562 120.41844940186 -- rear of bank
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)     
+        RemoveImap(row.hash)    
+    end     
 end
 
 function DisableResourcesINTERIORS(x, y, z)  

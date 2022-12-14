@@ -32,7 +32,12 @@ function EnableResouresIMAP()
         RequestImap(666617953) -- Something relating to valentine saloon
     end       
 
-    RequestImap(GetHashKey("val_03__interior_val_saloon_int_milo_"))    
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)    
+        if row.trigger == true then 
+            RequestImap(row.hash)        
+        end  
+    end 
 
 end
 
@@ -143,7 +148,10 @@ function DisableResourcesIMAPS()
     RequestImap(-991619789) -- wooden box outside valentine saloon below food board 
     RemoveImap(-799526632) -- Valentine Saloon chimney smoke
     RemoveImap(666617953) -- Something relating to valentine saloon 
-    RemoveImap(GetHashKey("val_03__interior_val_saloon_int_milo_"))  
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)     
+        RemoveImap(row.hash)    
+    end    
 end
 
 function DisableResourcesINTERIORS(x, y, z)  

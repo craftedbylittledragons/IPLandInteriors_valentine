@@ -11,6 +11,10 @@ Config.WaterTrough = true
 Config.Unknown1 = true  
 Config.Unknown2 = true  
 
+ymaps = {
+    {filename ="val_03__interior_val_stable_int_milo_.ymap", name="val_03__interior_val_stable_int_milo_", hash=GetHashKey("val_03__interior_val_stable_int_milo_"), trigger=true, description=""},
+}
+
 Config.Label = "Val Stables"
 Config.x = -367.652
 Config.y = 786.036
@@ -33,7 +37,13 @@ function EnableResouresIMAP()
     if Config.Unknown2 == true then         
         RequestImap(-2012814419)        
         --     l_05__strm_0    -2012814419    scottybeammeup -352.48498535156 768.0 118.10903167724 - corner of stables fence, across from butcher           
-    end     
+    end    
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)    
+        if row.trigger == true then 
+            RequestImap(row.hash)        
+        end  
+    end  
 end
 
 function EnableResouresINTERIORS(x, y, z)  
@@ -52,6 +62,10 @@ function DisableResourcesIMAPS()
     RemoveImap(30201771)     -- New Hanover -- Valentine -- Water Troughs at stables        
     RemoveImap(-2012814419)        
     RemoveImap(-1724329007)    
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)     
+        RemoveImap(row.hash)    
+    end    
 end
 
 function DisableResourcesINTERIORS(x, y, z)  

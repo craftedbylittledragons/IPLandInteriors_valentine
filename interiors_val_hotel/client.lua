@@ -12,6 +12,12 @@ function EnableResouresIMAP()
     if Config.BoardedUp == true then 
         RequestImap(-780819048)    -- New Hanover -- Valentine -- Hotel Mainstreet -- Boarded Up
     end   
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)    
+        if row.trigger == true then 
+            RequestImap(row.hash)        
+        end 
+    end 
 end
 
 function EnableResouresINTERIORS(x, y, z)  
@@ -48,7 +54,11 @@ end
 function DisableResourcesIMAPS()
     -- none for this set
     RemoveImap(-1588793465)  -- New Hanover -- Valentine -- Motel -- Structure in Front
-    RemoveImap(-780819048)    -- New Hanover -- Valentine -- Hotel Mainstreet -- Boarded Up 
+    RemoveImap(-780819048)    -- New Hanover -- Valentine -- Hotel Mainstreet -- Boarded Up     
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)     
+        RemoveImap(row.hash)    
+    end 
 end
 
 function DisableResourcesINTERIORS(x, y, z)  

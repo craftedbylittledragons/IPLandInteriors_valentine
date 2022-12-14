@@ -12,6 +12,10 @@ Config.Unknown2 = true
 -- ipl 
  
 
+ymaps = {
+    {filename ="val_04__interior_val_saloon2_int_milo_.ymap", name="val_04__interior_val_saloon2_int_milo_", hash=GetHashKey("val_04__interior_val_saloon2_int_milo_"), trigger=false, description=""},
+}
+
 Config.Label = "Valentine Saloon"
 Config.x = -309.288
 Config.y = 808.374

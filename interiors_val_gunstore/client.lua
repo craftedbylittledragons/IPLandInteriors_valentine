@@ -1,5 +1,6 @@
 ---------- Manual definitions ---  
 local interiorsActive = false
+local ymapsActive = false
 local character_selected = false
 
 Config = {}
@@ -23,6 +24,10 @@ Config.rifle = false
 Config.shotgun = false 
 Config.varmint = false 
 
+ymaps = {
+    {filename ="val_02__interior_val_gunsmith_int_main_milo_.ymap", name="val_02__interior_val_gunsmith_int_main_milo_", hash=GetHashKey("val_02__interior_val_gunsmith_int_main_milo_"), trigger=true, description=""},
+    {filename ="val_02_lockdown_gun.ymap", name="val_02_lockdown_gun", hash=GetHashKey("val_02_lockdown_gun"), trigger=false, description=""},
+} 
 
 Config.Label = "Valentine Gun Store"
 Config.x = -280.873
@@ -49,10 +54,16 @@ function EnableResouresIMAP()
 
     if Config.Unknown == true then 
         RequestImap(-951314072) -- New Hanover -- Valentine -- Gunsmith -- Structures in front?   
-    end 
-     
+    end    
 
-    interiorsActive = true
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)    
+        if row.trigger == true then 
+            RequestImap(row.hash)        
+        end 
+    end 
+    ymapsActive = true  
+
 end
 
 function EnableResouresINTERIORS(x, y, z)      
@@ -120,6 +131,7 @@ function EnableResouresINTERIORS(x, y, z)
 		"_s_inv_varmint_rifleammo01x_group"
 	})
     --]]
+    interiorsActive = true  
 end
 
 ----------- turn off the bar ------
@@ -129,7 +141,11 @@ function DisableResourcesIMAPS()
     RemoveImap(2470511) -- New Hanover -- Valentine -- Gunsmith -- Box and Stool Near It
     RemoveImap(325677491) -- New Hanover -- Valentine -- Gunsmith -- White Sign
     RemoveImap(-1933617196) -- New Hanover -- Valentine -- Gunsmith -- Structures in front?  
-    interiorsActive = false  
+    for key,row in pairs(ymap) do
+        print (row.filename, row.name, row.hash, row.trigger, row.description)     
+        RemoveImap(row.hash)    
+    end  
+    ymapsActive = false  
 end
 
 function DisableResourcesINTERIORS(x, y, z)      
@@ -173,6 +189,7 @@ function DisableResourcesINTERIORS(x, y, z)
         63746 	108187356 	val_gunsmith_int_main 	_s_inv_slug_shotgunAmmo01x_group
         63746 	108187356 	val_gunsmith_int_main 	_s_inv_varmint_rifleammo01x_group    
     --]]
+    interiorsActive = false  
      
 end     
 
