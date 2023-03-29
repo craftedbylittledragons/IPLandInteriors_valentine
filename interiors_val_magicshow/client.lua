@@ -12,7 +12,7 @@ Config.y = 699.269
 Config.z = 117.885   
 
 ----------- turn on the bar ------
-function EnableResouresIMAP()  
+function EnableResouresYMAPS()  
     if Config.Signs == 1 then    
         RequestImap(1879779330) -- New Hanover -- Valentine -- Traveling Magic Lantern Show -- sign outside tent version 1
     elseif Config.Signs == 2 then   
@@ -44,7 +44,7 @@ end
  
 
 ----------- turn off the bar ------
-function DisableResourcesIMAPS() 
+function DisableResourcesYMAPS() 
     RemoveImap(1879779330) -- New Hanover -- Valentine -- Traveling Magic Lantern Show -- sign outside tent version 1
     RemoveImap(1104143966) -- New Hanover -- Valentine -- Traveling Magic Lantern Show -- sign outside tent version 2
     RemoveImap(1027093524) -- New Hanover -- Valentine -- Traveling Magic Lantern Show -- sign outside tent version 3
@@ -75,7 +75,7 @@ RegisterCommand("turnonMagicShow", function(source, args)
 end)
 RegisterNetEvent('MagicShow:turnonMagicShow')
 AddEventHandler('MagicShow:turnonMagicShow', function(no_String)  
-	EnableResouresIMAP() 
+	EnableResouresYMAPS() 
     EnableResouresINTERIORS(Config.x, Config.y, Config.z)
     Wait(800) 
 end) 
@@ -89,7 +89,7 @@ RegisterCommand("turnoffMagicShow", function(source, args)
 end)
 RegisterNetEvent('MagicShow:turnoffMagicShow')
 AddEventHandler('MagicShow:turnoffMagicShow', function(no_String)  
-	DisableResourcesIMAPS()
+	DisableResourcesYMAPS()
     DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
     Wait(800) 
 end)  
@@ -100,7 +100,7 @@ end)
 AddEventHandler('onResourceStop', function(resource) 
     if resource == GetCurrentResourceName() then     
         -- when resource stops disable them, admin is restarting the script
-        DisableResourcesIMAPS() 
+        DisableResourcesYMAPS() 
         DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
     end
 end)
@@ -112,7 +112,7 @@ AddEventHandler('onResourceStart', function(resource)
     if resource == GetCurrentResourceName() then         
         Citizen.Wait(3000)
         -- interiors loads all of these, so we need to disable them 
-        DisableResourcesIMAPS() 
+        DisableResourcesYMAPS() 
         DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
         Citizen.Wait(3000)        
         -- because the character is already logged in on resource "re"start
@@ -166,7 +166,7 @@ Citizen.CreateThread(function()
     end 
     if character_selected == true and interiorsActive == false then 
         -- basically run once after character has loadded in  
-        EnableResouresIMAP() 
+        EnableResouresYMAPS() 
         EnableResouresINTERIORS(Config.x, Config.y, Config.z)
         interiorsActive = true
     end

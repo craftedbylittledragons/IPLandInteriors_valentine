@@ -1,4 +1,4 @@
-# interiors_val_Hotel by Crafted By Little Dragons
+# interiors_val_hotel by Crafted By Little Dragons
 ----
 #### Crafted By Little Dragons creates scripts to enhance role play and world interaction. **
 
@@ -9,7 +9,7 @@
 * *** documented and customizable *** 
  
 ## INSTALATION
-* add `ensure interiors_val_Hotel` to your file called `resources.cfg`.  
+* add `ensure interiors_val_hotel` to your file called `resources.cfg`.  
 * restart the server, and enjoy.
 
 ## DEPENDENCIES

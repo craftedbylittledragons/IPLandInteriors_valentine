@@ -84,7 +84,7 @@ AddEventHandler('ipl_tester', function(args)
     --local retval --[[ boolean ]], position --[[ vector3 ]], radius --[[ number ]] = Citizen.InvokeNative(0x9C77964B0E07B633, iplHash) -- GetIplBoundingSphere   
     --print("current ipl " .. iplHash .. " GetIplBoundingSphere: " , retval, position, radius)      
     -- Outputs IPL position and radius (previously wrongly named heading)
-    -- https://github.com/femga/rdr3_discoveries/blob/master/imaps/imaps_with_coords_and_heading.lua
+    -- https://github.com/femga/rdr3_discoveries/blob/master/YMAPS/YMAPS_with_coords_and_heading.lua
 
     -- IsPositionInsideIplStreamingExtents     0x73B40D97D7BAAD77     -- _IS_POSITION_INSIDE_IPL_STREAMING_EXTENTS
     --local retval --[[ boolean ]] = IsPositionInsideIplStreamingExtents( iplHash --[[ Hash ]], x --[[ number ]], y --[[ number ]], z --[[ number ]] )
