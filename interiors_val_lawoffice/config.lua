@@ -1,29 +1,27 @@
 Config = {}
 Config.ScriptName = GetCurrentResourceName()
 
+Config.loaded = false
+
 Config.Commands = {}
 Config.Commands.trigger = true 
-Config.Commands.start = "turnondoctor"
-Config.Commands.stop = "turnoffdoctor"
+Config.Commands.start = "turnonlawoffice"
+Config.Commands.stop = "turnofflawoffice"
 
 Config.Teleporter = {}
 Config.Teleporter.trigger = true 
 Config.Teleporter.name = "scottybeammeup" 
 
-Config.Label = "Valentine Doctor"
-Config.x = -287.3733
-Config.y = 805.1980
-Config.z = 119.4356   
+Config.Label = "Valentine Law Office"
+Config.x = -290.990387
+Config.y = 779.267822
+Config.z = 127.293602  
  
 Config.StockLevel = 1
 
 Config.hiDef = true
 
-Config.door_hash_v1 = {
-    951298,
-    1270530,
-    1756674,
-    2172162,
+Config.door_hash_v1 = { 
     "", ---  door hash
 }
 
@@ -33,43 +31,40 @@ Config.door_hash_v2 = {
 --]] 
 }  
  
-Config.ymap = {      
-    {filename ="val_03__interior_val_doctor_int_milo_", name ="", parent_name="", hash="", trigger=true, description=""},    
-    -- New Hanover -- Valentine -- Doctors Office -- Boarded up 
-    {filename ="", name ="", parent_name="BoardUp", hash=-981203673, trigger=false, description=""},     
-    --- Fixed Chair outside Valentine Doctor's Office 
-    {filename ="", name ="", parent_name="Chair", hash=-1049500949, trigger=true, description=""},   
-    -- Broken Chair outside Valentine Doctor's Office 
-    {filename ="", name ="", parent_name="Chair", hash=-2009766528, trigger=false, description=""}, 
-    --{filename ="", name ="", parent_name="", hash="", trigger=false, description=""},    
+Config.ymaps = {    
+     -- New Hanover -- Valentine -- Law Office -- Boarded Up   
+    {filename ="", name ="", parent_name="BoardedUp", hash=-5214081, trigger=false, description=""},    
+     -- New Hanover -- Valentine -- Law Office -- Chair in front
+    {filename ="", name ="", parent_name="Chair", hash=1186533019, trigger=true, description=""},     
+    -- New Hanover -- Valentine -- Law Office -- Posts 
+    {filename ="", name ="", parent_name="Square", hash=-156313117, trigger=true, description=""}, 
+    -- New Hanover -- Valentine -- Law office -- Fancy Posts      
+    {filename ="", name ="", parent_name="Fancy", hash=924412185, trigger=true, description=""}, 
+    -- val_03__strm_0  -986079299     scottybeammeup -287.83822631836 772.24346923828 123.43955993652 - law office      
+    {filename ="", name ="", parent_name="Unknown", hash=-986079299, trigger=false, description=""}, 
 }
+-- two part switch (Square = false, Fancy = true    = Thick posts)
+-- two part switch (Square = true,  Fancy = false   = Fancy Damaged posts)
+-- two part switch (Square = true,  Fancy = true    = Fancy posts)
   
 Config.interiors = {    
-    {filename ="val_doctor_int", name ="", parent_name="", hash="", trigger=true, description=""}, 
-    {filename ="_s_candyBag01x_red_group", name ="", parent_name="StockLevel", level="1", hash="", trigger=true, description=""}, 
-    {filename ="_s_inv_CocaineGum01x_dressing", name ="", parent_name="StockLevel",  level="1", hash="", trigger=true, description=""}, 
-    {filename ="_s_inv_CocaineGum01x_group", name ="", parent_name="StockLevel", level="1",  hash="", trigger=true, description=""}, 
-    {filename ="_s_inv_medicine01x_dressing", name ="", parent_name="StockLevel", level="1",  hash="", trigger=true, description=""}, 
-    {filename ="_s_inv_medicine01x_group", name ="", parent_name="StockLevel", level="1",  hash="", trigger=true, description=""}, 
-    {filename ="_s_inv_tabacco01x_dressing", name ="", parent_name="StockLevel", level="1",  hash="", trigger=true, description=""}, 
-    {filename ="_s_inv_tabacco01x_group", name ="", parent_name="StockLevel", level="1",  hash="", trigger=true, description=""}, 
-    {filename ="_s_inv_tonic01x_group", name ="", parent_name="StockLevel", level="1",  hash="", trigger=true, description=""},  
     --{filename ="", name ="", parent_name="", hash="", trigger=true, description=""},  
 }
  
-
 Config.ytd = {    
-    {filename =" ", name =" ", parent_name=" ", hash="", trigger=true, description=""},    
+    --{filename =" ", name =" ", parent_name=" ", hash="", trigger=true, description=""},    
 }
 
 Config.ydr = {
-    {filename =" ", name =" ", parent_name=" ", hash="", trigger=true, description=""},        
+    --{filename =" ", name =" ", parent_name=" ", hash="", trigger=true, description=""},        
 }
 
 Config.yft = {
-    {filename =" ", name ="", parent_name=" ", hash="", trigger=true, description=""},        
+    --{filename =" ", name ="", parent_name=" ", hash="", trigger=true, description=""},        
 }
 
 Config.ytd_hidef = {
-    {filename =" ", name ="",  parent_name=" ", hash="", trigger=true, description=""}, 
+    --{filename =" ", name ="",  parent_name=" ", hash="", trigger=true, description=""}, 
 }
+
+Config.loaded = true

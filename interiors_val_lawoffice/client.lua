@@ -8,10 +8,13 @@ local character_selected = false
 Citizen.CreateThread(function()
     while character_selected == false do 
         Citizen.Wait(1000)
+    end
+    while Config.loaded == false do 
+        Citizen.Wait(1000)
     end  
  
 ----- YMAPS ----------
-    for key,row in pairs(Config.ymap) do 
+    for key,row in pairs(Config.ymaps) do 
         if row.name == "" then 
             if row.filename ~= "" then 
                 row.name = row.filename
@@ -91,7 +94,7 @@ end)
 
 ----- YMAPS ----------
 function EnableResouresYMAPS()  
-    for key,row in pairs(Config.ymap) do  
+    for key,row in pairs(Config.ymaps) do  
         --print(key, row, row.hash)
         if row.trigger == true then 
             RequestImap(row.hash)   
@@ -99,7 +102,7 @@ function EnableResouresYMAPS()
     end      
 end
 function DisableResourcesYMAPS()    
-    for key,row in pairs(Config.ymap) do 
+    for key,row in pairs(Config.ymaps) do 
         --print(key, row, row.hash) 
         RemoveImap(row.hash)   
     end    
@@ -111,14 +114,8 @@ function EnableResouresINTERIORS(x, y, z)
     local interior = GetInteriorAtCoords(x, y, z)  
     for key,row in pairs(Config.interiors) do  
         --print(key, row, row.hash)
-        if row.trigger == true then 
-            if row.parent_name == "StockLevel" then 
-                if tonumber(row.level) <= tonumber(Config.StockLevel) then                         
-                    ActivateInteriorEntitySet(interior, row.name) 
-                end 
-            else  
-                ActivateInteriorEntitySet(interior, row.name)                     
-            end 
+        if row.trigger == true then  
+            ActivateInteriorEntitySet(interior, row.name)     
         end 
     end  
 end
@@ -165,7 +162,11 @@ end)
 Citizen.CreateThread(function()
     while character_selected == false do 
         Citizen.Wait(1000)
+    end
+    while Config.loaded == false do 
+        Citizen.Wait(1000)
     end 
+    
     if character_selected == true and interiorsActive == false then 
         --- cleanup any previous scripts loading content
         DisableResourcesYMAPS() 

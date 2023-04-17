@@ -1,4 +1,4 @@
-description 'Interiors Valentine Bank'
+description 'Interiors Valentine Hotel'
 author 'Crafted By Little Dragons'
 version '1.0'
 lua54 'yes'

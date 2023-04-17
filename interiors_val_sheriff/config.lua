@@ -36,7 +36,7 @@ Config.door_hash_v2 = {
 }  
  
  
-Config.ymap = {      
+Config.ymaps = {      
     {filename ="val_03__interior_val_jail_int_milo_", name ="", parent_name="", hash="", trigger=true, description=""},  
     {filename ="val_03_props_lockdown_jail", name ="", parent_name="", hash="", trigger=true, description=""},  
     {filename ="val_03_default_jail", name ="", parent_name="", hash="", trigger=true, description=""}, 

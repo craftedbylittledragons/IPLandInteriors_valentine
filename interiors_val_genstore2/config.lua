@@ -31,7 +31,7 @@ Config.door_hash_v2 = {
 -- [5730576] = {5730576,-164490887,"p_door_val_genstore2",-325.49053955078125, 806.7294311523438, 116.883544921875},
 }  
 
-Config.ymap = {     
+Config.ymaps = {     
     {filename ="val_03__interior_val_genstore_milo_", name ="", parent_name="", hash="", trigger=true, description=""},    
     -- New Hanover -- Valentine -- Green House -- General Store -- Boarded up?  
     {filename ="", name ="", parent_name="BoardUp", hash=56708243, trigger=false, description=""},     

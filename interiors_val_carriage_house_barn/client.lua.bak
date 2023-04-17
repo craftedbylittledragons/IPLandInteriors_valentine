@@ -4,103 +4,89 @@ local character_selected = false
 Config = {}
 Config.Commands = true  -- For testing set to false for live server
 Config.TeleportME = true -- For testing set to false for live server
-
-Config.Stable = true  
-Config.Barrels = true  
-Config.WaterTrough = true  
-Config.Unknown1 = true  
-Config.Unknown2 = true  
+ 
+Config.Carriagehouse = true 
 
 Config.ymaps = {
-    {filename ="val_03__interior_val_stable_int_milo_.ymap", name="val_03__interior_val_stable_int_milo_", hash=GetHashKey("val_03__interior_val_stable_int_milo_"), trigger=true, description=""},
+    {filename ="val_01__interior_val_carriagehouse_int_milo_.ymap", name="val_01__interior_val_carriagehouse_int_milo_", hash=GetHashKey("val_01__interior_val_carriagehouse_int_milo_"), trigger=true, description=""},
 }
 
-Config.Label = "Val Stables"
-Config.x = -367.652
-Config.y = 786.036
-Config.z = 114.489
+Config.Label = "Carriage House Valentine"
+Config.x = -273.67654418946 -- need to find this imap 
+Config.y = 689.20971679688
+Config.z = 117.64358520508    
 
------------ turn on the bar ------
-function EnableResouresYMAPS() 
-    -- none for this set     
-    if Config.Barrels == true then 
-        RequestImap(-159723514) -- barrels near rock to the right of valentine stables  
-    end  
-    if Config.WaterTrough == true then 
-        RequestImap(30201771)     -- New Hanover -- Valentine -- Water Troughs at stables    
-    end  
+local position = 0
 
-    if Config.Unknown1 == true then         
-        RequestImap(-1724329007)        -- close window when called, otherwise open
-        --     l_14_placement_strm_0   -1724329007    scottybeammeup -349.0422668457 784.70080566406 116.79002380372 -- road in front of stables     
-    end 
-    if Config.Unknown2 == true then         
-        RequestImap(-2012814419)        
-        --     l_05__strm_0    -2012814419    scottybeammeup -352.48498535156 768.0 118.10903167724 - corner of stables fence, across from butcher           
-    end    
+--[[ 	
+[0x84D4CD30] = {hashname="val_01__interior_val_carriagehouse_int_milo_",dec_hash=-2066428624,x=-273.67654418946,y=689.20971679688,z=117.64358520508,h=23.69799041748},
+--]]
+----------- turn on the cabin ------
+function EnableResouresYMAPS()    
+    if Config.Carriagehouse == true then 
+        RequestImap(-2066428624) -- House interior at -379.01, 917.94, 118.59   
+    end   
     for key,row in pairs(Config.ymaps) do
         print (row.filename, row.name, row.hash, row.trigger, row.description)    
         if row.trigger == true then 
             RequestImap(row.hash)        
-        end  
-    end  
+        end 
+    end     
+end  
+
+function EnableResouresINTERIORS(x, y, z)      
+    local interior = GetInteriorAtCoords(x, y, z)      
+    if Config.Carriagehouse == true then 
+        --[35842] = {x=-273.46157836914,y=688.9580078125,z=111.74069213867,typeHashId=1595374394,typeHashName="val_carriagehouse_int",rpf="val_carriagehouse_int.rpf"}
+        ActivateInteriorEntitySet(interior, "val_carriagehouse_int")
+    end 
 end
 
-function EnableResouresINTERIORS(x, y, z)  
-    local interior = GetInteriorAtCoords(x, y, z) 
-    if Config.Stable == true then 
-        -- [63490] = {x=-367.65255737305,y=786.0361328125,z=114.48915100098,typeHashId=-445781245,typeHashName="val_stable_int",rpf="val_stable_int.rpf"},
-        ActivateInteriorEntitySet(interior, "val_stable_int")  
-    end  
-    
-end
-
------------ turn off the bar ------
+----------- turn off the cabin ------
 function DisableResourcesYMAPS()
-    -- none for this set
-    RemoveImap(-159723514) -- barrels near rock to the right of valentine stables
-    RemoveImap(30201771)     -- New Hanover -- Valentine -- Water Troughs at stables        
-    RemoveImap(-2012814419)        
-    RemoveImap(-1724329007)    
+    RemoveImap(-2066428624) -- House interior at -379.01, 917.94, 118.59 
+    RemoveImap(1595374394) -- House interior at -379.01, 917.94, 118.59  
     for key,row in pairs(Config.ymaps) do
         print (row.filename, row.name, row.hash, row.trigger, row.description)     
         RemoveImap(row.hash)    
-    end    
+    end     
 end
 
 function DisableResourcesINTERIORS(x, y, z)  
+
     local interior = GetInteriorAtCoords(x, y, z) 
-    -- [63490] = {x=-367.65255737305,y=786.0361328125,z=114.48915100098,typeHashId=-445781245,typeHashName="val_stable_int",rpf="val_stable_int.rpf"},
-    DeactivateInteriorEntitySet(interior, "val_stable_int")                   
-end     
+    -- [35842] = {x=-273.46157836914,y=688.9580078125,z=111.74069213867,typeHashId=1595374394,typeHashName="val_carriagehouse_int",rpf="val_carriagehouse_int.rpf"},
+    DeactivateInteriorEntitySet(interior, "val_carriagehouse_int")    
+end    
+ 
 
 -----------------------------------------------------
------- admin commands to control the bar ----------
+------ admin commands to control the cabin ----------
 --- add admind perms later
 -----------------------------------------------------
-RegisterCommand("ValStables:turnon", function(source, args)    
+RegisterCommand("CarriageHouse:turnon_houseinterior", function(source, args)    
     if Config.Commands == true then   
-        TriggerEvent( "ValStables:turnon", "ok" ) 
+        TriggerEvent( "CarriageHouse:turnon_houseinterior", "ok" ) 
     else 
         print("Turn On IMAP is disabled in script "..Config.Label)
     end
 end)
-RegisterNetEvent('ValStables:turnon')
-AddEventHandler('ValStables:turnon', function(no_String)  
+RegisterNetEvent('CarriageHouse:turnon_houseinterior')
+AddEventHandler('CarriageHouse:turnon_houseinterior', function(no_String)  
 	EnableResouresYMAPS() 
     EnableResouresINTERIORS(Config.x, Config.y, Config.z)
     Wait(800) 
 end) 
   
-RegisterCommand("ValStables:turnoff", function(source, args)  
+RegisterCommand("CarriageHouse:turnoff_houseinterior", function(source, args)  
     if Config.Commands == true then       
-        TriggerEvent( "ValStables:turnoff", "ok" ) 
+        TriggerEvent( "CarriageHouse:turnoff_houseinterior", "ok" ) 
     else 
         print("Turn Off IMAP is disabled in script "..Config.Label)
     end
 end)
-RegisterNetEvent('ValStables:turnoff')
-AddEventHandler('ValStables:turnoff', function(no_String)  
+RegisterNetEvent('CarriageHouse:turnoff_houseinterior')
+AddEventHandler('CarriageHouse:turnoff_houseinterior', function(no_String)  
 	DisableResourcesYMAPS()
     DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
     Wait(800) 
@@ -136,21 +122,34 @@ end)
 -----------------------------------------------------
 -- Telport admin to the hosue location
 -----------------------------------------------------
-RegisterCommand("takemeto_ValStables", function(source, args)    
+RegisterCommand("CarriageHouse:takemeto_CarriageHouse", function(source, args)    
     if args ~= nil then   
         local data =  source 
         local ped = PlayerPedId() 
         local coords = GetEntityCoords(ped)        
         if Config.TeleportME == true then 
-            TriggerEvent( "ValStables:scottybeammeup", Config.x, Config.y, Config.z )
+            TriggerEvent( "CarriageHouse:scottybeammeup", Config.x, Config.y, Config.z )
         else 
             print("Teleport Me is disabled in "..Config.Label)
         end 
     end
 end)
 
-RegisterNetEvent('ValStables:scottybeammeup')
-AddEventHandler('ValStables:scottybeammeup', function(x,y,z)  
+RegisterCommand("CarriageHouse:takemeto_ipl", function(source, args)    
+    if args ~= nil then   
+        local data =  source 
+        local ped = PlayerPedId() 
+        local coords = GetEntityCoords(ped)        
+        if Config.TeleportME == true then 
+            TriggerEvent( "CarriageHouse:scottybeammeup", position.x, position.y, position.z )
+        else 
+            print("Teleport Me is disabled in "..Config.Label)
+        end 
+    end
+end)
+
+RegisterNetEvent('CarriageHouse:scottybeammeup')
+AddEventHandler('CarriageHouse:scottybeammeup', function(x,y,z)  
     local player = PlayerPedId() 
     Wait(800)
     DoScreenFadeOut(5000) 
@@ -181,5 +180,5 @@ Citizen.CreateThread(function()
         EnableResouresYMAPS() 
         EnableResouresINTERIORS(Config.x, Config.y, Config.z)
         interiorsActive = true
-    end
+    end 
 end)

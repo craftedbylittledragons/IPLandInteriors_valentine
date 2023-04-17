@@ -20,7 +20,7 @@ Config.StormDebris = true
 
 Config.StablesFrontWindow = false 
 
-ymaps = {
+Config.ymaps = {
     {filename ="val_07__strm_0.ymap", name="val_07__strm_0", hash=GetHashKey("val_07__strm_0"), trigger=true, description=""},
     {filename ="val_07__long_0.ymap", name="val_07__long_0", hash=GetHashKey("val_07__long_0"), trigger=true, description=""},
     {filename ="val_07_.ymap", name="val_07_", hash=GetHashKey("val_07_"), trigger=true, description=""},
@@ -108,7 +108,7 @@ function EnableResouresYMAPS()
         --     val_01__strm_0  -1878526311    scottybeammeup -337.50521850586 736.31860351562 115.46398925782 -- center of road between hotel and encampment
     end 
  
-    for key,row in pairs(ymap) do
+    for key,row in pairs(Config.ymaps) do
         print (row.filename, row.name, row.hash, row.trigger, row.description)    
         if row.trigger == true then 
             RequestImap(row.hash)        
@@ -145,7 +145,7 @@ function DisableResourcesYMAPS()
     RemoveImap(-518785376)    -- New Hanover -- Valentine -- Barricades -- Southern
     RemoveImap(-1878526311)   --     val_01__strm_0  -1878526311    scottybeammeup -337.50521850586 736.31860351562 115.46398925782 -- center of road between hotel and encampment    
 
-    for key,row in pairs(ymap) do
+    for key,row in pairs(Config.ymaps) do
         print (row.filename, row.name, row.hash, row.trigger, row.description)     
         RemoveImap(row.hash)    
     end      

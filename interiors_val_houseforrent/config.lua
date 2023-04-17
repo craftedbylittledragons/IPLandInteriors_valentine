@@ -1,49 +1,84 @@
 Config = {}
-Config.Commands = true  -- For testing set to false for live server
-Config.TeleportME = true -- For testing set to false for live server
+Config.ScriptName = GetCurrentResourceName()
 
--- ipl / imap
-Config.Sign = true 
+Config.Commands = {}
+Config.Commands.trigger = true 
+Config.Commands.start = "turnongreenhouse"
+Config.Commands.stop = "turnoffgreenhouse"
 
--- interiors
-Config.Posts = true  
+Config.Teleporter = {}
+Config.Teleporter.trigger = true 
+Config.Teleporter.name = "scottybeammeup" 
 
-Config.Label = "House Template"
-Config.x = -309.288
-Config.y = 808.374
-Config.z = 119.187   
+Config.Label = "Valentine Green House"
+Config.x = -294.053
+Config.y = 797.377
+Config.z = 118.403  
 
- 
-local entity = 0
-local hash_code = -542955242
-local obj_name = "p_door04x"
+Config.hiDef = true
 
 Config.door_hash_v1 = {
-    ----Valentine 
-    entity,
+    "", ---  door hash
 }
 
 Config.door_hash_v2 = {
-    --"Name": "Room 1", // 
-    --"DoorsStatus": [  ],
-    --"Doors":  [   ]    
---[entity] ={entity,hash_code,obj_name,2634.681, -1225.021, 58.59612},  
+--[[
+[5730576] = {5730576,-164490887,"p_door_val_genstore2",-325.49053955078125, 806.7294311523438, 116.883544921875},
+--]] 
 }  
-     
---------------------------------------------------
--- Teleport Cofiguration  ---------------------------
---------------------------------------------------
-Config.definedkey = { named = "G", hash = 0x760A9C6F }
-Config.TeleporterPrompt = "Use Door [~e~"..  Config.definedkey.named  .."~q~]"
-Config.TeleportDistance = 0.5
-Config.WaitTimer = 1000
-Config.FadeTimer = 2
 
-Config.TeleportEnter_On = false 
---"TPEnter": [ 2633.843, -1224.484, 58.64468 ],
-Config.Room = {x = 2634.843, y= -1225.484, z=58.64468, h = 000.00 } -- upstairs right  - room exist - structure interior missing 
- 
-Config.TeleportExit_On = false 
---"TPLeave": [ 2635.453, -1224.474, 58.63639 ],
-Config.Room = {x = 2634.453, y= -1225.474, z=58.63639 , h = 000.00 }
- 
+Config.ymaps = {
+     -- New Hanover -- Valentine -- Green House -- (Do Not Load Both(1/2)Building and Restaurant mainstreet - Pre-paint, almost completed stage(Help wanted sign)
+    {filename ="", name ="", parent_name="Construction", hash=1081087978, trigger=false, description=""},    
+    -- New Hanover -- Valentine -- Green House -- (Do Not Load Both(2/2)Building and Restaurant Mainstreet-Painted, completed stage. Keane's Rooms for Rent
+    {filename ="", name ="", parent_name="Construction", hash=903666582, trigger=true, description=""},  
+
+    -- New Hanover -- Valentine -- Green House -- Building boarded up 
+    {filename ="", name ="", parent_name="BoardedUp", hash=282485265, trigger=false, description=""},  
+    
+    -- New Hanover -- Valentine -- Green House -- Building Lamp
+    {filename ="", name ="", parent_name="Lamp", hash=637874199, trigger=true, description=""},   
+    
+    --true match: j_09__trees_0 31880119 -297.67965698242 819.28039550782 123.32624816894            
+    {filename ="", name ="", parent_name="Tree1", hash=31880119, trigger=true, description=""},  
+    -- 2. New Hanover -- Valentine -- Green House -- Exterior Trees and Flowers 1(Run 2 and 3 together)                
+    {filename ="", name ="", parent_name="Tree2", hash=-1521525254, trigger=true, description=""}, 
+    -- 2. New Hanover -- Valentine -- Green House -- Exterior Trees and Flowers 1(Run 2 and 3 together)                
+    {filename ="", name ="", parent_name="Tree3", hash=-761186147, trigger=true, description=""}, 
+    
+    {filename ="", name ="", parent_name="Restaurant", hash=-1892595931, trigger=true, description=""},     
+         
+    {filename ="", name ="", parent_name="Chair", hash=-1744253204, trigger=true, description=""},    
+             
+    {filename ="", name ="", parent_name="Unknown", hash=-1781246069, trigger=false, description=""},
+    -- something relating to green house in valentine
+    -- true match: -1781246069 scottybeammeup -292.50619506836 801.41845703125 118.86724090576   
+
+    {filename ="", name ="", parent_name="Unknown", hash=1186533019, trigger=false, description=""},    
+    -- something relating to green house in valentine
+    -- true match:             1186533019      -292.74053955078        783.86340332032 118.87322998046   
+ }
+
+Config.interiors = {    
+    {filename ="val_03_room4rent_enlssum_dtls", name ="", parent_name="RentSign", hash="", trigger=true, description=""}, 
+    {filename ="val_03_room4rent_enlssum", name ="", parent_name="RentSign", hash="", trigger=true, description=""},
+    {filename ="val_03_redrest_endlssum", name ="", parent_name="", hash="", trigger=true, description=""}, 
+    {filename ="val_03_rst_endlssum_em_hd", name ="", parent_name="", hash="", trigger=true, description=""}, 
+    {filename ="val_03_rst_endlssum_em_hd+hidr", name ="", parent_name="", hash="", trigger=true, description=""},       
+}
+
+Config.ytd = {    
+    {filename =" ", name =" ", parent_name=" ", hash="", trigger=true, description=""},    
+}
+
+Config.ydr = {
+    {filename =" ", name =" ", parent_name=" ", hash="", trigger=true, description=""},        
+}
+
+Config.yft = {
+    {filename =" ", name ="", parent_name=" ", hash="", trigger=true, description=""},        
+}
+
+Config.ytd_hidef = {
+    {filename =" ", name ="",  parent_name=" ", hash="", trigger=true, description=""}, 
+}

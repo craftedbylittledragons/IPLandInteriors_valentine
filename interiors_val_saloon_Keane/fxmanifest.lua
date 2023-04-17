@@ -1,4 +1,4 @@
-description 'Interiors Valentine Saloon'
+description 'Interiors Valentine Salooon Keane'
 author 'Crafted By Little Dragons'
 version '1.0'
 lua54 'yes'

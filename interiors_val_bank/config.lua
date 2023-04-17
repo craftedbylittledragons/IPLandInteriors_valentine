@@ -37,7 +37,7 @@ Config.door_hash_v2 = {
 --]] 
 }  
 
-Config.ymap = {
+Config.ymaps = {
     {filename ="val_02__interior_val_bank_int_main_milo_", name ="", parent_name="Interior", hash="", trigger=true, description=""},
     {filename ="val_02_lockdown_bank", name ="", parent_name="LockDown", hash="", trigger=false, description=""},
     {filename ="val_01__strm_0", name ="", parent_name="Storm", hash="", trigger=false, description=""},    

@@ -1,4 +1,4 @@
-description 'Interiors Valentine Green House'
+description 'Interiors Valentine General Store'
 author 'Crafted By Little Dragons'
 version '1.0'
 lua54 'yes'

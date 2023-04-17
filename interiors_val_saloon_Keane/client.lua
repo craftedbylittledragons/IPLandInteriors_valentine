@@ -1,87 +1,144 @@
 ---------- Manual definitions ---  
 local interiorsActive = false
-local character_selected = false 
-
------------ turn on the bar ------
-function EnableResouresYMAPS()         
-    --------------------------------  Keane's Saloon 
-    if Config.HayBales == true then
-        RequestImap(-2083943324) --hay bales and boxes outside Keane's Saloon in valentine 
-    end    
-    if Config.Unknown == true then
-        RequestImap(666617953) -- Something relating to valentine saloon
-    end     
-    if Config.Debris == true then 
-        RequestImap(610256856) -- New Hanover -- Valentine -- Keane's Saloon -- Debris and Remodle next to Liqour
-    end 
-    if Config.Unknown1 == true then
-        RequestImap(-1740986169) -- Something relating to valentine saloon
-        --- val_04__interior_val_saloon2_int_milo_  -1740986169    scottybeammeup -289.67193603516 769.58337402344 119.80627441406 -- behind the law office
+local character_selected = false
+  
+-----------------------------------------------------
+-- Main thread that controls the script
+-----------------------------------------------------
+Citizen.CreateThread(function()
+    while character_selected == false do 
+        Citizen.Wait(1000)
     end      
+    while Config.loaded == false do 
+        Citizen.Wait(1000)
+    end  
+ 
+----- YMAPS ----------
+    for key,row in pairs(Config.ymaps) do 
+        if row.name == "" then 
+            if row.filename ~= "" then 
+                row.name = row.filename
+            end 
+        end 
+        if row.hash == "" then 
+            row.hash = GetHashKey(row.name)
+        end 
+        --print(key, row, row.hash)
+    end  
 
-    for key,row in pairs(ymap) do
-        print (row.filename, row.name, row.hash, row.trigger, row.description)    
-        if row.trigger == true then 
-            RequestImap(row.hash)        
-        end  
+----- Interiors ----------    
+    for key,row in pairs(Config.interiors) do 
+        if row.name == "" then 
+            if row.filename ~= "" then 
+                row.name = row.filename
+            end 
+        end 
+        if row.hash == "" then 
+            row.hash = GetHashKey(row.name)
+        end 
+        --print(key, row, row.hash)
+    end  
+
+----- ytd ---------- 
+    for key,row in pairs(Config.ytd) do 
+        if row.name == "" then 
+            if row.filename ~= "" then 
+                row.name = row.filename
+            end 
+        end 
+        if row.hash == "" then 
+            row.hash = GetHashKey(row.name)
+        end 
+        --print(key, row, row.hash)
     end 
+
+----- ydr ---------- 
+    for key,row in pairs(Config.ydr) do 
+        if row.name == "" then 
+            if row.filename ~= "" then 
+                row.name = row.filename
+            end 
+        end 
+        if row.hash == "" then 
+            row.hash = GetHashKey(row.name)
+        end 
+        --print(key, row, row.hash)
+    end 
+    
+----- yft ---------- 
+    for key,row in pairs(Config.yft) do 
+        if row.name == "" then 
+            if row.filename ~= "" then 
+                row.name = row.filename
+            end 
+        end 
+        if row.hash == "" then 
+            row.hash = GetHashKey(row.name)
+        end 
+        --print(key, row, row.hash)
+    end     
+
+----- ytd_hidef ---------- 
+    for key,row in pairs(Config.ytd_hidef) do 
+        if row.name == "" then 
+            if row.filename ~= "" then 
+                row.name = row.filename
+            end 
+        end 
+        if row.hash == "" then 
+            row.hash = GetHashKey(row.name)
+        end 
+        --print(key, row, row.hash)
+    end   
+end) 
+
+----- YMAPS ----------
+function EnableResouresYMAPS()  
+    for key,row in pairs(Config.ymaps) do  
+        --print(key, row, row.hash)
+        if row.trigger == true then 
+            RequestImap(row.hash)   
+        end 
+    end      
+end
+function DisableResourcesYMAPS()    
+    for key,row in pairs(Config.ymaps) do 
+        --print(key, row, row.hash) 
+        RemoveImap(row.hash)   
+    end    
 end
 
+
+----- INTERIORS ----------
 function EnableResouresINTERIORS(x, y, z)  
     local interior = GetInteriorAtCoords(x, y, z)  
-    --[[
-        [29698] = {x=-241.58325195313,y=769.90649414063,z=117.54511260986,typeHashId=-565068911,typeHashName="val_saloon2_int",rpf="val_saloon2_int.rpf"},
-        29698 	-565068911 	val_saloon2_int 	l_00260edcej   
-    --]]
-    ActivateInteriorEntitySet(interior, "val_saloon2_int")       
-    if Config.Unknow == true then  
-        ActivateInteriorEntitySet(interior, "l_00260edcej")         
-    end   
-    ---      val_04__interior_val_saloon2_int_milo_  -1740986169    scottybeammeup -289.67193603516 769.58337402344 119.80627441406 -- behid the law office
-         
-
-    ActivateInteriorEntitySet(interior, "val_saloon2_int") -- ydd 
-
-    ActivateInteriorEntitySet(interior, "val_saloon2_int_ref")  -- drawable object 
-    ActivateInteriorEntitySet(interior, "val_sal2_details03_decals")  -- drawable object
-    ActivateInteriorEntitySet(interior, "val_sal2_ceiling1")  -- drawable object
-    ActivateInteriorEntitySet(interior, "val_sal02_shell01")  -- drawable object
-    ActivateInteriorEntitySet(interior, "val_sal02_int_shadowproxy")    -- drawable object
-    
-    --ActivateInteriorEntitySet(interior, "val_saloon2_int") -- collisions
-    --ActivateInteriorEntitySet(interior, "val_saloon2_int_txd") -- texture dic
-    --ActivateInteriorEntitySet(interior, "val_saloon2_int_shell") -- texture dic
-
+    for key,row in pairs(Config.interiors) do  
+        --print(key, row, row.hash)
+        if row.trigger == true then 
+            if row.parent_name == "StockLevel" then 
+                if tonumber(row.level) <= tonumber(Config.StockLevel) then                         
+                    ActivateInteriorEntitySet(interior, row.name) 
+                end 
+            else  
+                ActivateInteriorEntitySet(interior, row.name)                     
+            end 
+        end 
+    end  
 end
-
--- currently there are two hitching posts. 
-
------------ turn off the bar ------
-function DisableResourcesYMAPS() 
-    RemoveImap(-2083943324) -- New Hanover -- Valentine -- Keane's Saloon -- Debris Infront of Liqour
-    RemoveImap(610256856) -- New Hanover -- Valentine -- Keane's Saloon -- Debris and Remodle next to Liqour 
-    RemoveImap(666617953) -- Something relating to valentine saloon     
-
-    for key,row in pairs(ymap) do
-        print (row.filename, row.name, row.hash, row.trigger, row.description)     
-        RemoveImap(row.hash)    
-    end    
-
-end
-
 function DisableResourcesINTERIORS(x, y, z)  
-    local interior = GetInteriorAtCoords(x, y, z)    
-    DeactivateInteriorEntitySet(interior, "val_saloon2_int")     
-    DeactivateInteriorEntitySet(interior, "l_00260edcej")         
+    local interior = GetInteriorAtCoords(x, y, z)  
+    for key,row in pairs(Config.interiors) do 
+        --print(key, row, row.hash)  
+        DeactivateInteriorEntitySet(interior, row.name)  
+    end  
 end    
- 
+  
  
 -----------------------------------------------------
 ---remove all on resource stop---
 -----------------------------------------------------
 AddEventHandler('onResourceStop', function(resource) 
-    if resource == GetCurrentResourceName() then     
-        -- when resource stops disable them, admin is restarting the script
+    if resource == GetCurrentResourceName() then      
         DisableResourcesYMAPS() 
         DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
     end
@@ -91,18 +148,12 @@ end)
 --- clear all on resource start ---
 -----------------------------------------------------
 AddEventHandler('onResourceStart', function(resource) 
-    if resource == GetCurrentResourceName() then         
-        Citizen.Wait(3000)
-        -- interiors loads all of these, so we need to disable them 
-        DisableResourcesYMAPS() 
-        DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
-        Citizen.Wait(3000)        
-        -- because the character is already logged in on resource "re"start
+    if resource == GetCurrentResourceName() then          
+        Citizen.Wait(3000)         
         character_selected = true
     end
 end)
  
-
 -----------------------------------------------------
 -- Trigger when character is selected
 -----------------------------------------------------
@@ -110,7 +161,7 @@ RegisterNetEvent("vorp:SelectedCharacter") -- NPC loads after selecting characte
 AddEventHandler("vorp:SelectedCharacter", function(charid) 
 	character_selected = true
 end)
-  
+
 -----------------------------------------------------
 -- Main thread that controls the script
 -----------------------------------------------------
@@ -126,6 +177,7 @@ Citizen.CreateThread(function()
         -- basically run once after character has loadded in  
         EnableResouresYMAPS() 
         EnableResouresINTERIORS(Config.x, Config.y, Config.z)
+
         interiorsActive = true
         unlockDoors()  
     end

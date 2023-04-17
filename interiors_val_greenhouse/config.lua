@@ -27,7 +27,7 @@ Config.door_hash_v2 = {
 --]] 
 }  
 
-Config.ymap = {
+Config.ymaps = {
      -- New Hanover -- Valentine -- Green House -- (Do Not Load Both(1/2)Building and Restaurant mainstreet - Pre-paint, almost completed stage(Help wanted sign)
     {filename ="", name ="", parent_name="Construction", hash=1081087978, trigger=false, description=""},    
     -- New Hanover -- Valentine -- Green House -- (Do Not Load Both(2/2)Building and Restaurant Mainstreet-Painted, completed stage. Keane's Rooms for Rent

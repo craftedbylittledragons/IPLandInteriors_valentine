@@ -7,7 +7,7 @@ Config.Commands.start = "turnondoctor"
 Config.Commands.stop = "turnoffdoctor"
 
 Config.Teleporter = {}
-Config.Teleporter.trigger = true 
+Config.Teleporter.trigger = false 
 Config.Teleporter.name = "scottybeammeup" 
 
 Config.Label = "Valentine Doctor"
@@ -33,7 +33,7 @@ Config.door_hash_v2 = {
 --]] 
 }  
  
-Config.ymap = {      
+Config.ymaps = {      
     {filename ="val_03__interior_val_doctor_int_milo_", name ="", parent_name="", hash="", trigger=true, description=""},    
     -- New Hanover -- Valentine -- Doctors Office -- Boarded up 
     {filename ="", name ="", parent_name="BoardUp", hash=-981203673, trigger=false, description=""},     

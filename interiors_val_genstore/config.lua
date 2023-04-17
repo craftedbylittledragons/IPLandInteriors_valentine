@@ -27,7 +27,7 @@ Config.door_hash_v2 = {
 --]] 
 }  
 
-Config.ymap = {     
+Config.ymaps = {     
     {filename ="val_03__interior_val_genstore_milo_", name ="", parent_name="", hash="", trigger=true, description=""},    
 
     -- New Hanover -- Valentine -- Green House -- General Store -- Boarded up?  

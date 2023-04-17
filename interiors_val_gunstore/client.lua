@@ -1,237 +1,138 @@
 ---------- Manual definitions ---  
 local interiorsActive = false
-local ymapsActive = false
 local character_selected = false
-
-Config = {}
-Config.Commands = true  -- For testing set to false for live server
-Config.TeleportME = true -- For testing set to false for live server
-
-Config.Bench = true  
-Config.OldSign = true  
-Config.Stool = true  
-Config.WhiteSign = true  
-Config.PorchPosts = true 
-Config.Unknown = false 
-
-
-Config.arrow = false 
-Config.highvlcty = false 
-Config.pistol = false 
-Config.repeater = false 
-Config.revolver = false 
-Config.rifle = false 
-Config.shotgun = false 
-Config.varmint = false 
-
-ymaps = {
-    {filename ="val_02__interior_val_gunsmith_int_main_milo_.ymap", name="val_02__interior_val_gunsmith_int_main_milo_", hash=GetHashKey("val_02__interior_val_gunsmith_int_main_milo_"), trigger=true, description=""},
-    {filename ="val_02_lockdown_gun.ymap", name="val_02_lockdown_gun", hash=GetHashKey("val_02_lockdown_gun"), trigger=false, description=""},
-} 
-
-Config.Label = "Valentine Gun Store"
-Config.x = -280.873
-Config.y = 781.777
-Config.z = 119.725   
-
------------ turn on the bar ------
-function EnableResouresYMAPS() 
-    if Config.Bench == true then 
-        RequestImap(-1905652203) -- New Hanover -- Valentine -- Gunsmith -- Bench Infront
-    end 
-    if Config.OldSign == true then 
-        RequestImap(1936501508) -- New Hanover -- Valentine -- Gunsmith -- big old sign gunshop
-    end 
-    if Config.Stool == true then 
-        RequestImap(2470511) -- New Hanover -- Valentine -- Gunsmith -- Box and Stool Near Pole Outside in yard.
-    end 
-    if Config.WhiteSign == true then 
-        RequestImap(325677491) -- New Hanover -- Valentine -- Gunsmith -- White Sign
-    end 
-    if Config.PorchPosts == true then 
-        RequestImap(-1933617196) -- New Hanover -- Valentine -- Gunsmith -- Structures in front?   
-    end 
-
-    if Config.Unknown == true then 
-        RequestImap(-951314072) -- New Hanover -- Valentine -- Gunsmith -- Structures in front?   
-    end    
-
-    for key,row in pairs(ymap) do
-        print (row.filename, row.name, row.hash, row.trigger, row.description)    
-        if row.trigger == true then 
-            RequestImap(row.hash)        
-        end 
-    end 
-    ymapsActive = true  
-
-end
-
-function EnableResouresINTERIORS(x, y, z)      
-    local interior = GetInteriorAtCoords(x, y, z)   
-    ActivateInteriorEntitySet(interior, "val_gunsmith_int_main")      
-     
-    if Config.arrow == true then          
-        ActivateInteriorEntitySet(interior, "_s_inv_arrowammo01x_dressing")      
-    end  
-        
-    if Config.highvlcty == true then    
-        ActivateInteriorEntitySet(interior, "_s_inv_highvlcty_pstAmmo01x_group")  
-        ActivateInteriorEntitySet(interior, "_s_inv_highvlcty_revAmmo01x_group")  
-        ActivateInteriorEntitySet(interior, "_s_inv_highvlcty_rifleAmmo01x_group")      
-    end 
-
-    if Config.pistol == true then    
-        ActivateInteriorEntitySet(interior, "_s_inv_pistolAmmo01x_group")  
-        ActivateInteriorEntitySet(interior, "_s_inv_pistol_sign_dressing")      
-    end 
-
-    if Config.repeater == true then            
-        ActivateInteriorEntitySet(interior, "_s_inv_repeater_sign_dressing")       
-        ActivateInteriorEntitySet(interior, "_s_inv_repeatHV_rifleammo01x_group")  
-        ActivateInteriorEntitySet(interior, "_s_inv_repeat_rifleammo01x_group")    
-    end           
-
-    if Config.revolver == true then            
-        ActivateInteriorEntitySet(interior, "_s_inv_revolverAmmo01x_group")  
-        ActivateInteriorEntitySet(interior, "_s_inv_revolver_sign_dressing")       
-    end 
-
-    if Config.rifle == true then                    
-        ActivateInteriorEntitySet(interior, "_s_inv_rifleAmmo01x_group")  
-        ActivateInteriorEntitySet(interior, "_s_inv_rifle_sign_dressing")      
-    end 
-        
-    if Config.shotgun == true then   
-        ActivateInteriorEntitySet(interior, "_s_inv_shotgunAmmo01x_group")  
-        ActivateInteriorEntitySet(interior, "_s_inv_shotgun_sign_dressing")           
-        ActivateInteriorEntitySet(interior, "_s_inv_slug_shotgunAmmo01x_group")      
-    end 
-        
-    if Config.varmint == true then   
-        ActivateInteriorEntitySet(interior, "_s_inv_varmint_rifleammo01x_group")         
-    end 
-    --[[
-	ActivateInteriorEntitySets(63746, "Valentine gun store", {
-		"_s_inv_arrowammo01x_dressing",
-		"_s_inv_highvlcty_pstAmmo01x_group",
-		"_s_inv_highvlcty_pstAmmo01x_group",
-		"_s_inv_highvlcty_pstAmmo01x_group",
-		"_s_inv_pistolAmmo01x_group",
-		"_s_inv_pistol_sign_dressing",
-		"_s_inv_repeater_sign_dressing",
-		"_s_inv_repeatHV_rifleammo01x_group",
-		"_s_inv_repeat_rifleammo01x_group",
-		"_s_inv_revolverAmmo01x_group",
-		"_s_inv_revolver_sign_dressing",
-		"_s_inv_rifleAmmo01x_group",
-		"_s_inv_rifle_sign_dressing",
-		"_s_inv_shotgunAmmo01x_group",
-		"_s_inv_shotgun_sign_dressing",
-		"_s_inv_slug_shotgunAmmo01x_group",
-		"_s_inv_varmint_rifleammo01x_group"
-	})
-    --]]
-    interiorsActive = true  
-end
-
------------ turn off the bar ------
-function DisableResourcesYMAPS()
-    RemoveImap(-1905652203) -- New Hanover -- Valentine -- Gunsmith -- Bench Infront
-    RemoveImap(1936501508) -- New Hanover -- Valentine -- Gunsmith -- big old sign gunshop
-    RemoveImap(2470511) -- New Hanover -- Valentine -- Gunsmith -- Box and Stool Near It
-    RemoveImap(325677491) -- New Hanover -- Valentine -- Gunsmith -- White Sign
-    RemoveImap(-1933617196) -- New Hanover -- Valentine -- Gunsmith -- Structures in front?  
-    for key,row in pairs(ymap) do
-        print (row.filename, row.name, row.hash, row.trigger, row.description)     
-        RemoveImap(row.hash)    
-    end  
-    ymapsActive = false  
-end
-
-function DisableResourcesINTERIORS(x, y, z)      
-    local interior = GetInteriorAtCoords(x, y, z)    
-    DeactivateInteriorEntitySet(interior, "val_gunsmith_int_main")  
-    DeactivateInteriorEntitySet(interior, "_s_inv_arrowammo01x_dressing")   
-    DeactivateInteriorEntitySet(interior, "_s_inv_highvlcty_pstAmmo01x_group")  
-    DeactivateInteriorEntitySet(interior, "_s_inv_highvlcty_revAmmo01x_group")  
-    DeactivateInteriorEntitySet(interior, "_s_inv_highvlcty_rifleAmmo01x_group")  
-    DeactivateInteriorEntitySet(interior, "_s_inv_pistolAmmo01x_group")  
-    DeactivateInteriorEntitySet(interior, "_s_inv_pistol_sign_dressing")  
-    DeactivateInteriorEntitySet(interior, "_s_inv_repeater_sign_dressing")   
-
-    DeactivateInteriorEntitySet(interior, "_s_inv_repeatHV_rifleammo01x_group")  
-    DeactivateInteriorEntitySet(interior, "_s_inv_repeat_rifleammo01x_group")  
-    DeactivateInteriorEntitySet(interior, "_s_inv_revolverAmmo01x_group")  
-    DeactivateInteriorEntitySet(interior, "_s_inv_revolver_sign_dressing")   
-    DeactivateInteriorEntitySet(interior, "_s_inv_rifleAmmo01x_group")  
-    DeactivateInteriorEntitySet(interior, "_s_inv_rifle_sign_dressing")  
-    DeactivateInteriorEntitySet(interior, "_s_inv_shotgunAmmo01x_group")  
-    DeactivateInteriorEntitySet(interior, "_s_inv_shotgun_sign_dressing")   
-    DeactivateInteriorEntitySet(interior, "_s_inv_slug_shotgunAmmo01x_group")  
-    DeactivateInteriorEntitySet(interior, "_s_inv_varmint_rifleammo01x_group")   
-
-    --[[
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_arrowammo01x_dressing
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_highvlcty_pstAmmo01x_group
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_highvlcty_revAmmo01x_group
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_highvlcty_rifleAmmo01x_group
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_pistolAmmo01x_group
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_pistol_sign_dressing
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_repeater_sign_dressing
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_repeatHV_rifleammo01x_group
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_repeat_rifleammo01x_group
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_revolverAmmo01x_group
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_revolver_sign_dressing
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_rifleAmmo01x_group
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_rifle_sign_dressing
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_shotgunAmmo01x_group
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_shotgun_sign_dressing
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_slug_shotgunAmmo01x_group
-        63746 	108187356 	val_gunsmith_int_main 	_s_inv_varmint_rifleammo01x_group    
-    --]]
-    interiorsActive = false  
-     
-end     
-
-
------------------------------------------------------
------- admin commands to control the bar ----------
---- add admind perms later
------------------------------------------------------
-RegisterCommand("VGunS:turnon", function(source, args)    
-    if Config.Commands == true then   
-        TriggerEvent( "VGunS:turnon", "ok" ) 
-    else 
-        print("Turn On IMAP is disabled in script "..Config.Label)
-    end
-end)
-RegisterNetEvent('VGunS:turnon')
-AddEventHandler('VGunS:turnon', function(no_String)  
-	EnableResouresYMAPS() 
-    EnableResouresINTERIORS(Config.x, Config.y, Config.z)
-    Wait(800) 
-end) 
   
-RegisterCommand("VGunS:turnoff", function(source, args)  
-    if Config.Commands == true then       
-        TriggerEvent( "VGunS:turnoff", "ok" ) 
-    else 
-        print("Turn Off IMAP is disabled in script "..Config.Label)
+-----------------------------------------------------
+-- Main thread that controls the script
+-----------------------------------------------------
+Citizen.CreateThread(function()
+    while character_selected == false do 
+        Citizen.Wait(1000)
     end
-end)
-RegisterNetEvent('VGunS:turnoff')
-AddEventHandler('VGunS:turnoff', function(no_String)  
-	DisableResourcesYMAPS()
-    DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
-    Wait(800) 
-end)  
+    while Config.loaded == false do 
+        Citizen.Wait(1000)
+    end  
+ 
+----- YMAPS ----------
+    for key,row in pairs(Config.ymaps) do 
+        if row.name == "" then 
+            if row.filename ~= "" then 
+                row.name = row.filename
+            end 
+        end 
+        if row.hash == "" then 
+            row.hash = GetHashKey(row.name)
+        end 
+        --print(key, row, row.hash)
+    end  
 
+----- Interiors ----------    
+    for key,row in pairs(Config.interiors) do 
+        if row.name == "" then 
+            if row.filename ~= "" then 
+                row.name = row.filename
+            end 
+        end 
+        if row.hash == "" then 
+            row.hash = GetHashKey(row.name)
+        end 
+        --print(key, row, row.hash)
+    end  
+
+----- ytd ---------- 
+    for key,row in pairs(Config.ytd) do 
+        if row.name == "" then 
+            if row.filename ~= "" then 
+                row.name = row.filename
+            end 
+        end 
+        if row.hash == "" then 
+            row.hash = GetHashKey(row.name)
+        end 
+        --print(key, row, row.hash)
+    end 
+
+----- ydr ---------- 
+    for key,row in pairs(Config.ydr) do 
+        if row.name == "" then 
+            if row.filename ~= "" then 
+                row.name = row.filename
+            end 
+        end 
+        if row.hash == "" then 
+            row.hash = GetHashKey(row.name)
+        end 
+        --print(key, row, row.hash)
+    end 
+    
+----- yft ---------- 
+    for key,row in pairs(Config.yft) do 
+        if row.name == "" then 
+            if row.filename ~= "" then 
+                row.name = row.filename
+            end 
+        end 
+        if row.hash == "" then 
+            row.hash = GetHashKey(row.name)
+        end 
+        --print(key, row, row.hash)
+    end     
+
+----- ytd_hidef ---------- 
+    for key,row in pairs(Config.ytd_hidef) do 
+        if row.name == "" then 
+            if row.filename ~= "" then 
+                row.name = row.filename
+            end 
+        end 
+        if row.hash == "" then 
+            row.hash = GetHashKey(row.name)
+        end 
+        --print(key, row, row.hash)
+    end   
+end) 
+
+----- YMAPS ----------
+function EnableResouresYMAPS()  
+    for key,row in pairs(Config.ymaps) do  
+        --print(key, row, row.hash)
+        if row.trigger == true then 
+            RequestImap(row.hash)   
+        end 
+    end      
+end
+function DisableResourcesYMAPS()    
+    for key,row in pairs(Config.ymaps) do 
+        --print(key, row, row.hash) 
+        RemoveImap(row.hash)   
+    end    
+end
+
+
+----- INTERIORS ----------
+function EnableResouresINTERIORS(x, y, z)  
+    local interior = GetInteriorAtCoords(x, y, z)  
+    for key,row in pairs(Config.interiors) do  
+        --print(key, row, row.hash)
+        if row.trigger == true then  
+            ActivateInteriorEntitySet(interior, row.name)     
+        end 
+    end  
+end
+function DisableResourcesINTERIORS(x, y, z)  
+    local interior = GetInteriorAtCoords(x, y, z)  
+    for key,row in pairs(Config.interiors) do 
+        --print(key, row, row.hash)  
+        DeactivateInteriorEntitySet(interior, row.name)  
+    end  
+end    
+  
+ 
 -----------------------------------------------------
 ---remove all on resource stop---
 -----------------------------------------------------
 AddEventHandler('onResourceStop', function(resource) 
-    if resource == GetCurrentResourceName() then     
-        -- when resource stops disable them, admin is restarting the script
+    if resource == GetCurrentResourceName() then      
         DisableResourcesYMAPS() 
         DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
     end
@@ -241,46 +142,12 @@ end)
 --- clear all on resource start ---
 -----------------------------------------------------
 AddEventHandler('onResourceStart', function(resource) 
-    if resource == GetCurrentResourceName() then         
-        Citizen.Wait(3000)
-        -- interiors loads all of these, so we need to disable them 
-        DisableResourcesYMAPS() 
-        DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
-        interiorsActive = false
-        Citizen.Wait(3000)        
-        -- because the character is already logged in on resource "re"start
+    if resource == GetCurrentResourceName() then          
+        Citizen.Wait(3000)         
         character_selected = true
     end
 end)
  
-
------------------------------------------------------
--- Telport admin to the hosue location
------------------------------------------------------
-RegisterCommand("takemeto_VGunS", function(source, args)    
-    if args ~= nil then   
-        local data =  source 
-        local ped = PlayerPedId() 
-        local coords = GetEntityCoords(ped)        
-        if Config.TeleportME == true then 
-            TriggerEvent( "VGunS:scottybeammeup", Config.x, Config.y, Config.z )
-        else 
-            print("Teleport Me is disabled in "..Config.Label)
-        end 
-    end
-end)
-
-RegisterNetEvent('VGunS:scottybeammeup')
-AddEventHandler('VGunS:scottybeammeup', function(x,y,z)  
-    local player = PlayerPedId() 
-    Wait(800)
-    DoScreenFadeOut(5000) 
-    Wait(10000)
-    SetEntityCoords(player, x, y, z)
-    DoScreenFadeIn(5000)      
-end)
- 
-
 -----------------------------------------------------
 -- Trigger when character is selected
 -----------------------------------------------------
@@ -289,24 +156,29 @@ AddEventHandler("vorp:SelectedCharacter", function(charid)
 	character_selected = true
 end)
 
-
 -----------------------------------------------------
 -- Main thread that controls the script
 -----------------------------------------------------
 Citizen.CreateThread(function()
     while character_selected == false do 
         Citizen.Wait(1000)
+    end
+    while Config.loaded == false do 
+        Citizen.Wait(1000)
     end 
-    -- interiors loads all of these, so we need to disable them 
-    DisableResourcesYMAPS() 
-    DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
-    interiorsActive = false
-    Citizen.Wait(3000)     
     
     if character_selected == true and interiorsActive == false then 
+        --- cleanup any previous scripts loading content
+        DisableResourcesYMAPS() 
+        DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
+
         -- basically run once after character has loadded in  
         EnableResouresYMAPS() 
         EnableResouresINTERIORS(Config.x, Config.y, Config.z)
+
         interiorsActive = true
+        unlockDoors()  
     end
 end)
+
+ 

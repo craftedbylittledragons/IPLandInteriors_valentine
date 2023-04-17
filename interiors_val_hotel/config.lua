@@ -49,7 +49,7 @@ Config.door_hash_v2 = {
     --]]
 }   
  
-Config.ymap = { 
+Config.ymaps = { 
     {filename ="val_02__interior_val_hotel_int_main_milo_", name ="", parent_name="", hash="", trigger=true, description=""},    
     {filename ="val_02_lockdown_hotel", name ="", parent_name="BoardedUp", hash="", trigger=false, description=""},    
     {filename ="", name ="", parent_name="", hash=-1588793465, trigger=true, description=""},  -- suit case and red sign front porch

@@ -1,4 +1,4 @@
-description 'Interiors Valentine Salooon Smithfield'
+description 'Interiors Valentine Green House'
 author 'Crafted By Little Dragons'
 version '1.0'
 lua54 'yes'

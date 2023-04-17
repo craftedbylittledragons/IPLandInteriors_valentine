@@ -1,6 +1,6 @@
-description 'Interiors Valentine Saloon'
+description 'Interiors Valentine Encampment'
 author 'Crafted By Little Dragons'
-version '1.0'
+version '2.0'
 lua54 'yes'
 
 fx_version 'adamant'
@@ -11,7 +11,8 @@ client_script {
     'config.lua',
     'teleporter.lua',
     'doors.lua',    
-    'commands.lua',    
+    'commands.lua',  
+    'drawtext.lua',    
     'client.lua'
 }
  

@@ -1,4 +1,4 @@
-# interiors_valentinegraves by Crafted By Little Dragons
+# interiors_valentine_graves by Crafted By Little Dragons
 ----
 #### Crafted By Little Dragons creates scripts to enhance role play and world interaction. **
 
@@ -9,7 +9,7 @@
 * *** documented and customizable *** 
  
 ## INSTALATION
-* add `ensure interiors_valentinegraves` to your file called `resources.cfg`.  
+* add `ensure interiors_valentine_graves` to your file called `resources.cfg`.  
 * restart the server, and enjoy.
 
 ## DEPENDENCIES

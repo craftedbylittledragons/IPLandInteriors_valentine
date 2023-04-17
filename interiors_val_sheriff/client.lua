@@ -13,7 +13,7 @@ Citizen.CreateThread(function()
         Citizen.Wait(1000)
     end   
 ----- YMAPS ----------
-    for key,row in pairs(Config.ymap) do 
+    for key,row in pairs(Config.ymaps) do 
         if row.name == "" then 
             if row.filename ~= "" then 
                 row.name = row.filename
@@ -93,7 +93,7 @@ end)
 
 ----- YMAPS ----------
 function EnableResouresYMAPS()  
-    for key,row in pairs(Config.ymap) do  
+    for key,row in pairs(Config.ymaps) do  
         --print(key, row, row.hash)
         if row.trigger == true then 
             RequestImap(row.hash)   
@@ -101,7 +101,7 @@ function EnableResouresYMAPS()
     end      
 end
 function DisableResourcesYMAPS()    
-    for key,row in pairs(Config.ymap) do 
+    for key,row in pairs(Config.ymaps) do 
         --print(key, row, row.hash) 
         RemoveImap(row.hash)    
     end    
