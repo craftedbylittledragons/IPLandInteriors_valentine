@@ -35,31 +35,31 @@ Config.door_hash_v2 = {
 }   
  
 Config.ymaps = {      
-    {filename ="val_03__interior_val_saloon_int_milo_", name ="", parent_name="", hash="", trigger=true, description=""},    
+    {filename ="val_03__interior_val_saloon_int_milo_.ymap", name ="val_03__interior_val_saloon_int_milo_", parent_name="Interior", hash="", trigger=true, description=""},    
  
     -- Valentine Saloon -- New Hanover -- Valentine -- Smithfields Saloon, Mainstreet, General Store -- Crates Outside 
-    {filename ="", name ="", parent_name="Construction", hash=1285430299, trigger=true, description=""},               
+    {filename ="", name ="", parent_name="Construction", hash=1285430299, trigger=false, description=""},               
 
     -- Valentine Saloon -- New Hanover -- Valentine -- Smithfields Saloon, Mainstreet -- Sign in Front
-    {filename ="", name ="", parent_name="Sign", hash=-1158072415, trigger=true, description=""},               
+    {filename ="", name ="", parent_name="Sign", hash=-1158072415, trigger=false, description=""},               
 
     -- Valentine Saloon -- New Hanover -- Valentine -- Smithfields Saloon, Mainstreet -- Boarded Windows
-    {filename ="", name ="", parent_name="BoardedUp", hash=199047531, trigger=true, description=""},               
+    {filename ="", name ="", parent_name="BoardedUp", hash=199047531, trigger=false, description=""},               
     -- Valentine Saloon -- New Hanover -- Valentine -- Smithfields Saloon, Mainstreet -- Boarded Up??
-    {filename ="", name ="", parent_name="BoardedUp", hash=1136898294, trigger=true, description=""},               
+    {filename ="", name ="", parent_name="BoardedUp", hash=1136898294, trigger=false, description=""},               
 
     -- Valentine Saloon -- New Hanover -- Valentine -- Smithfields Saloon, Mainstreet -- Closed Sign
-    {filename ="", name ="", parent_name="Closed", hash=1385025009, trigger=true, description=""},               
+    {filename ="", name ="", parent_name="Closed", hash=1385025009, trigger=false, description=""},               
     -- Valentine Saloon -- New Hanover -- Valentine -- Smithfields Saloon, Mainstreet -- Front Doors locked
-    {filename ="", name ="", parent_name="Closed", hash=-776975047, trigger=true, description=""},               
+    {filename ="", name ="", parent_name="Closed", hash=-776975047, trigger=false, description=""},               
 
     -- Valentine Saloon -- New Hanover -- Valentine -- Smithfields Saloon, Mainstreet -- Support Beams and Signs
     {filename ="", name ="", parent_name="Posts", hash=192173299, trigger=true, description=""},               
 
     -- Valentine Saloon -- boxes between valentine general store and saloon
-    {filename ="", name ="", parent_name="Boxes", hash=-1000738568, trigger=true, description=""},               
+    {filename ="", name ="", parent_name="Boxes", hash=-1000738568, trigger=false, description=""},               
     -- Valentine Saloon -- wooden box outside valentine saloon below food board
-    {filename ="", name ="", parent_name="Boxes", hash=-991619789, trigger=true, description=""},               
+    {filename ="", name ="", parent_name="Boxes", hash=-991619789, trigger=false, description=""},               
 
     -- Valentine Saloon -- Valentine Saloon chimney smoke
     {filename ="", name ="", parent_name="Chimney", hash=-799526632, trigger=true, description=""},               

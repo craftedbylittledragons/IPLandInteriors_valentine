@@ -111,14 +111,8 @@ function EnableResouresINTERIORS(x, y, z)
     local interior = GetInteriorAtCoords(x, y, z)  
     for key,row in pairs(Config.interiors) do  
         --print(key, row, row.hash)
-        if row.trigger == true then 
-            if row.parent_name == "StockLevel" then 
-                if tonumber(row.level) <= tonumber(Config.StockLevel) then                         
-                    ActivateInteriorEntitySet(interior, row.name) 
-                end 
-            else  
-                ActivateInteriorEntitySet(interior, row.name)                     
-            end 
+        if row.trigger == true then                         
+            ActivateInteriorEntitySet(interior, row.name)    
         end 
     end  
 end
